@@ -115,8 +115,8 @@ script:
       mkdir -p build &&
       cmake -DADDONS_TO_BUILD="$ADDONS".* -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../addons $TRAVIS_BUILD_DIR/cmake/addons &&
       make -j4;
-      make coverage
-      make coverage_xml
+      make coverage;
+      make coverage_xml;
     fi
 
 after_failure:
