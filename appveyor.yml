@@ -111,6 +111,8 @@ build_script:
               Write-Host [ ERROR ] $_ -ForegroundColor Red
             }
           }
+          make coverage
+          make coverage_xml
           exit 1
         }
       }
