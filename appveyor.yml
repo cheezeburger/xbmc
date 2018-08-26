@@ -24,8 +24,8 @@ install:
   - mklink /j %APPVEYOR_BUILD_FOLDER%\project\BuildDependencies\msys64 C:\msys64
   
 before_build:
-  - nuget restore
-  
+- cmd: nuget restore .\src
+
 build_script:
   # Setup Visual Studio compiler environment
   - ps: $ErrorActionPreference= 'silentlycontinue'
