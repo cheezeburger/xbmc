@@ -122,7 +122,7 @@ test: on
 
 after_test: 
     # Tell OpenCover to generate coverage.xml
-    - cmd: OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test "-filter:+[TestBasic]*" -output:".\MyProject_coverage.xml" -oldstyle
+    - cmd: OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test "-filter:+[Test]*" -output:".\MyProject_coverage.xml" -oldstyle
             
     # Send coverage.xml to Coveralls
-    #- cmd: packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover coverage.xml -r %/RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9%
+    - cmd: packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover coverage.xml -r %/RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9%
