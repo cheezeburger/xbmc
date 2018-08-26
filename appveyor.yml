@@ -1,10 +1,7 @@
 os: Visual Studio 2015
 
 shallow_clone: true
-    
-deploy:
-  - provider: NuGet
-  
+
 environment:
   CONFIG: Release
   matrix:
@@ -14,16 +11,11 @@ environment:
     # - ADDONS: pvr
     # - ADDONS: screensaver
     # - ADDONS: visualization
-  COVERALLS_REPO_TOKEN:  
-    secure: /RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 install:
-  - cmd: choco install opencover.portable
-  - appveyor DownloadFile https://www.nuget.org/api/v2/package/OpenCover/4.6.519
-  - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
   - SET PATH=C:\Program Files (x86)\CMake\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
   - bash -lc "pacman --needed --noconfirm -Sy"
   - mklink /j %APPVEYOR_BUILD_FOLDER%\project\BuildDependencies\msys64 C:\msys64
@@ -34,7 +26,7 @@ build_script:
 
   # Setup Visual Studio compiler environment
   - call "%VS140COMNTOOLS%..\..\VC\bin\vcvars32.bat"
-  
+
   #
   # Build Kodi
   #
@@ -118,16 +110,4 @@ build_script:
           exit 1
         }
       }
-test: on
-
-test_script:
-
-    – ps: >-
-
-
-    - OpenCover.Console.exe
-    –register:user
-    -target:”C:\projects\$env:APPVEYOR_PROJECT_NAME\packages\xunit.runner.console.
-    .4.6.519\tools\xunit.console.exe” “-targetargs:xbmc\bin\$env:CONFIGURATION\:xbmc.dll
-    –appveyor –noshadow”
-    -filter:”+[test]*” –output:opencoverCoverage.xml
+test: off
