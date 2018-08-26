@@ -114,5 +114,9 @@ build_script:
           exit 1
         }
       }
-
-test: off
+      Add-AppveyorTest -Name "newTest" -Framework "idk" -FileName "TestBasicEnvironment.cpp"
+             [-Outcome <outcome> { None | Running | Passed | Failed | Ignored | Skipped
+             | Inconclusive | NotFound |  Cancelled | NotRunnable}] [-Duration 1000]
+             [-ErrorMessage "fail"] [-ErrorStackTrace "ff"]
+             [-StdOut <string>] [-StdErr <string>]
+test: on
