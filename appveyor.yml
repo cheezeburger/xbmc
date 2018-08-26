@@ -22,9 +22,6 @@ install:
   - SET PATH=C:\Program Files (x86)\CMake\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
   - bash -lc "pacman --needed --noconfirm -Sy"
   - mklink /j %APPVEYOR_BUILD_FOLDER%\project\BuildDependencies\msys64 C:\msys64
-  
-before_build:
-- cmd: nuget restore .\src
 
 build_script:
   # Setup Visual Studio compiler environment
@@ -122,7 +119,4 @@ after_test:
     # Tell OpenCover to generate coverage.xml
     - cmd: packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover coverage.xml -r %/RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9%   
     - cmd: packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[ConTabs]*" -target:"packages\NUnit.ConsoleRunner.3.7.0\tools\nunit3-console.exe" -targetargs:"/domain:single ConTabs.Tests/bin/debug/ConTabs.Tests.dll" -output:coverage.xml
-    
-    # Send coverage.xml to Coveralls
-    - cmd: packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover coverage.xml 
 
