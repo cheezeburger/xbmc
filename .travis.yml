@@ -31,6 +31,19 @@ env:
 #  - ADDONS=screensaver
 #  - ADDONS=visualization
 
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "cheezeburger/xbmc"
+      description: "<Your project description here>"
+    notification_email: shaneyo@1utar.my
+    build_command_prepend: ./configure
+    build_command: make
+    branch_pattern: coverity_scan
+
 matrix:
   fast_finish: true
   allow_failures:
