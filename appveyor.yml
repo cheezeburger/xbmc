@@ -125,7 +125,7 @@ test_script:
     – ps: >-
 
 
-    .\OpenCover.Console.exe
+    - OpenCover.Console.exe
     –register:user
     -target:”C:\projects\$env:APPVEYOR_PROJECT_NAME\packages\xunit.runner.console.
     .4.6.519\tools\xunit.console.exe” “-targetargs:xbmc\bin\$env:CONFIGURATION\:xbmc.dll
