@@ -1,10 +1,6 @@
 os: Visual Studio 2015
 
 shallow_clone: true
-
-artifacts:
-  - provider: NuGet
-    server: https://www.myget.org/F/opencover/api/v2/package
     
 deploy:
   - provider: NuGet
@@ -25,6 +21,7 @@ init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 install:
+  - appveyor DownloadFile https://www.nuget.org/api/v2/package/OpenCover/4.6.519
   - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
   - SET PATH=C:\Program Files (x86)\CMake\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
   - bash -lc "pacman --needed --noconfirm -Sy"
