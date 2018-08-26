@@ -27,10 +27,7 @@ build_script:
   # Setup Visual Studio compiler environment
   - ps: $ErrorActionPreference= 'silentlycontinue'
   - choco install "msbuild-sonarqube-runner" -y
-  - MSBuild.SonarQube.Runner.exe begin /k:"xbmc" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=154dea054bb49006bfcd2ef9a8221eb8e4b70a53"
-  - msbuild "RUN_TESTS.vcxproj.sln"
-  - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=154dea054bb49006bfcd2ef9a8221eb8e4b70a53"
-
+  
   # Setup Visual Studio compiler environment
   - call "%VS140COMNTOOLS%..\..\VC\bin\vcvars32.bat"
 
@@ -122,6 +119,10 @@ build_script:
           make coverage_xml
           exit 1
         }
+        - MSBuild.SonarQube.Runner.exe begin /k:"xbmc" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=154dea054bb49006bfcd2ef9a8221eb8e4b70a53"
+        - msbuild "RUN_TESTS.vcxproj.sln"
+        - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=154dea054bb49006bfcd2ef9a8221eb8e4b70a53"
+
       }
 
 test: off
