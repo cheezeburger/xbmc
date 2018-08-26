@@ -11,15 +11,7 @@ environment:
     # - ADDONS: pvr
     # - ADDONS: screensaver
     # - ADDONS: visualization
-    
-before_build:
-  - nuget restore kodi-build\RUN_TESTS.vcxproj
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory tools
-  - nuget install OpenCover -Version 4.6.519 -OutputDirectory tools
- 
-    \.toolsOpenCover.4.6.519toolsOpenCover.Console.exe -target:.toolsNUnit.Runners.2.6.4toolsnunit-console.exe -targetargs:"/nologo /noshadow .GoogleDriveOfflineBackup.TestsbinDebugGoogleDriveOfflineBackup.Tests.dll" -filter:"+[*]* -[*.Tests]*" -register:user
 
-  
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
@@ -31,8 +23,7 @@ install:
 build_script:
   # Setup Visual Studio compiler environment
   - ps: $ErrorActionPreference= 'silentlycontinue'
-  - choco install "msbuild-sonarqube-runner" -y
-  
+
   # Setup Visual Studio compiler environment
   - call "%VS140COMNTOOLS%..\..\VC\bin\vcvars32.bat"
 
@@ -44,10 +35,8 @@ build_script:
         # Download dependencies
         cd $env:APPVEYOR_BUILD_FOLDER\tools\buildsteps\windows\win32
         & .\download-dependencies.bat
-
         # We are using AppVeyor's already installed msys64 environment,
         # no need to install msys/mingw environment.
-
         # Download precompiled mingw32 libraries
         # To run make-mingwlibs.bat on AppVeyor takes too long,
         # we must use precompiled libs to speed up build
@@ -70,7 +59,6 @@ build_script:
         cmd /c 'cmake -G "Visual Studio 14" .. 2>&1'
         cmd /c 'cmake --build . --target all_build --config RelWithDebInfo 2>&1'
       }
-
   #
   # Build Addons
   #
@@ -79,7 +67,6 @@ build_script:
         # Bootstrap
         cd $env:APPVEYOR_BUILD_FOLDER\tools\buildsteps\windows\win32
         & .\bootstrap-addons.bat
-
         # Create build folder
         md -Force $env:APPVEYOR_BUILD_FOLDER\build | out-null
         cd $env:APPVEYOR_BUILD_FOLDER\build
@@ -123,5 +110,4 @@ build_script:
           exit 1
         }
       }
-
 test: on
