@@ -120,11 +120,3 @@ after_build:
     $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
     Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
     bash codecov.sh -f "gtestresults.xml"
-
-#test_script:
- # - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:"C:\projects\materialdesigninxamltoolkit-2l02p\MaterialDesignColors.Wpf.Tests\bin\Debug\MaterialDesignColors.Wpf.Fixture.dll" "C:\projects\materialdesigninxamltoolkit-2l02p\MaterialDesignThemes.Wpf.Tests\bin\Debug\MaterialDesignThemes.Wpf.Tests.dll" -noshadow" "-filter:+[MaterialDesignColors*]* +[MaterialDesignThemes*]*" -output:".\coverage.xml"
- 
-
-    
-    # Send coverage.xml to Coveralls
-  #  - cmd: packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover coverage.xml -r %/RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9%
