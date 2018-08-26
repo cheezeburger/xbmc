@@ -120,9 +120,14 @@ build_script:
       }
 test: on
 
-after_test: 
-    # Tell OpenCover to generate coverage.xml
-    - cmd: OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test "-filter:+[Test]*" -output:".\MyProject_coverage.xml" -oldstyle
-            
-    # Send coverage.xml to Coveralls
-    - cmd: packages\coveralls.io.1.4.2\tools\coveralls.net.exe --opencover coverage.xml -r %/RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9%
+test_script:
+
+    – ps: >-
+
+
+    .\OpenCover.Console.exe
+    –register:user
+    -target:”C:\projects\$env:APPVEYOR_PROJECT_NAME\packages\xunit.runner.console.
+    .4.6.519\tools\xunit.console.exe” “-targetargs:xbmc\bin\$env:CONFIGURATION\:xbmc.dll
+    –appveyor –noshadow”
+    -filter:”+[test]*” –output:opencoverCoverage.xml
