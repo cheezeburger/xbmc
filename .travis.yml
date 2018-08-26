@@ -87,9 +87,9 @@ before_script:
       mkdir $TRAVIS_BUILD_DIR/build &&
       cd $TRAVIS_BUILD_DIR/build;
     fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" && "$BUILD" == "Kodi" && "$CXX" == "g++" ]]; then
-      cmake -DCMAKE_BUILD_TYPE=Debug ..;
-    fi
+  #- if [[ "$TRAVIS_OS_NAME" == "linux" && "$BUILD" == "Kodi" && "$CXX" == "g++" ]]; then
+  #    cmake -DCMAKE_BUILD_TYPE=Debug ..;
+  #  fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$BUILD" == "Kodi" && "$CXX" == "clang++" ]]; then
       cmake -DCMAKE_CXX_FLAGS="-Qunused-arguments" ..;
     fi
