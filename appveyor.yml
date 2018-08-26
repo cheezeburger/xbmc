@@ -11,8 +11,8 @@ environment:
     # - ADDONS: pvr
     # - ADDONS: screensaver
     # - ADDONS: visualization
-    COVERALLS_REPO_TOKEN:  
-       secure: /RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9
+  COVERALLS_REPO_TOKEN:  
+     secure: /RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
