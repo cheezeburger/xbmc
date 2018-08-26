@@ -35,9 +35,6 @@ build_script:
   # Setup Visual Studio compiler environment
   - call "%VS140COMNTOOLS%..\..\VC\bin\vcvars32.bat"
   
-before_build:
-  - cmd: nuget restore -verbosity quiet
-
   #
   # Build Kodi
   #
