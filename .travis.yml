@@ -20,19 +20,12 @@ compiler:
   - clang
 
 env:
-  global:
-     # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-     #   via the "travis encrypt" command using the project repo's public key
-     - secure: "RmGbcahyRcIZri2k5qPIrHGEFzDK63o7wHvuFHCG1Qq72j6QSDTnyeC+0lHBHqw94fSZjPsCrG5emWwFu4QWW9TD3r+83sg13F5P/yqQnF1XpVgtjEzG9oyFZjNTZ1GcFD5Fu3DtDKVQqG+rJKxbwszqjV3qoN8lJQggsMTihuCd9ED2EiyQiuCbZSdWGbuotWEcxu+nwAq9hxTCN+kdiVV3PNiu53g7vdHMFKpq22tzHPVjw6CKV4eQeCTO8CGCABr24021IoiCHuAOXGSTu1NTnOIKmfbz9uoL7vicZ5cXxXt13LL0/Qqs1V8+PjqdE8urKXDnbrtYv+S0CvvLE0MxLIoH9UvT59RJnmGqVRWYUdzUn/mUP3gON4iJZAiZfA1nTPeRNO0UUrEOriJfifMqhP0AbJGkKwskdFRA+HqIqMGObx++nlxVDtfUvZ1+3tTSN96aUX4C5yMEuBYrJoNcRCzcbCriYXqeeJqrRMHl8j+c7JtGd3V00hpTd9NH3X5jvVSDjdrlHfFWY7OJvFwCfyIiLTo9V6Jb/xrb27oVhmHjWyDPM2L47jYcP6NKL87skOtERPeTiMNvFLzLFxNVlXsS5bXJdTX3pHbGfDHogmlrfItM5ss43PH/xwYyXBgKG0PZkvoGZuX2Pn5fuJw+PCvSxWHNUdcbPVEt8XE="
- - BUILD=Kodi TOOLS=CMake
-  #  - ADDONS=audiodecoder
-  #  - ADDONS=audioencoder
-  #  - ADDONS=pvr
-  #  - ADDONS=screensaver
-  #  - ADDONS=visualization
-
-before_install:
-  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+  - BUILD=Kodi TOOLS=CMake
+#  - ADDONS=audiodecoder
+#  - ADDONS=audioencoder
+#  - ADDONS=pvr
+#  - ADDONS=screensaver
+#  - ADDONS=visualization
 
 matrix:
   fast_finish: true
