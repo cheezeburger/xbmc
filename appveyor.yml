@@ -118,7 +118,7 @@ test: on
  # - OpenCover.Console.exe -register:user -target:"%xunit20%\xunit.console.x86.exe" "-targetargs:"C:\projects\materialdesigninxamltoolkit-2l02p\MaterialDesignColors.Wpf.Tests\bin\Debug\MaterialDesignColors.Wpf.Fixture.dll" "C:\projects\materialdesigninxamltoolkit-2l02p\MaterialDesignThemes.Wpf.Tests\bin\Debug\MaterialDesignThemes.Wpf.Tests.dll" -noshadow" "-filter:+[MaterialDesignColors*]* +[MaterialDesignThemes*]*" -output:".\coverage.xml"
  
  after_test:
-  - ps: |
+    - ps: |
       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
       Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
       bash codecov.sh -f "gtestresults.xml"
