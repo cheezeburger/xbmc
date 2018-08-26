@@ -11,6 +11,15 @@ environment:
     # - ADDONS: pvr
     # - ADDONS: screensaver
     # - ADDONS: visualization
+    
+before_build:
+  - nuget restore
+  
+build_script:
+- choco install "msbuild-sonarqube-runner" -y
+- MSBuild.SonarQube.Runner.exe begin /k:"xbmc" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=154dea054bb49006bfcd2ef9a8221eb8e4b70a53"
+- msbuild "RUN_TESTS.vcxproj.sln"
+- MSBuild.SonarQube.Runner.exe end /d:"sonar.login=154dea054bb49006bfcd2ef9a8221eb8e4b70a53"
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
