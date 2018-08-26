@@ -20,10 +20,10 @@ compiler:
   - clang
 
 env:
-  - BUILD=Kodi TOOLS=CMake
   global:
    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
    #   via the "travis encrypt" command using the project repo's public key
+   - BUILD=Kodi TOOLS=CMake
    - secure: "gXgIH1wqggMZwbVCnkdRlAXKXT0I8X9brLp6idvWBH/zXk9eMdyJfIhDp5RctA1AzTgWf+QWTTq8VQC0ob2+Tasmamri7q7W5AcsnRj3udc6BM4tgZj1D+cb78GFZD2x6c+UUZqAhXP10D8blXZLFYjfwdv8vye6KIO7040clRx09D09c+Sk/GZY7P2nNYB5lXR+/nPILiJj6Qyl+LOfA6/E7WoFA8tFbvrxZktSgxQOXWqe/X3iunqjsY0ZYEOLqSpolTuurhhLDlLwwq6QaLWE1rJFep3DjKVbpbgJBz/FWjc7rMzr+HQY8Vf5KhQF+hsSAC+9dw9m7vB0X4FHqPVLb16yyMq2osFbJ+ziFaZkpOrEAyPni1TwIx9ga7d6aocZ+KdDQtXG+dvdiMyWp7Czf/E9ARy7kxFMMkKaEjFZ+gll0sXnWuLI0A/d+5rMLLx9SmYyhpxk1Db0uH2919T4XhHA+wwDPI5TIZ37RFiziqu2ZIqgj+UwYifYlEZz2tj1csdaxrd+F46/Jk+whWaTBvC+29j8eMshRaKy/OWhzdnM5BRG5g45N3yhOoFAsV4RTzONLPxwZQ48ypIMTI3SPIRV8RNXBBOiHPTYhKA5oscUm3Rp0oowzQLn9h8W/3AyFmra8sC4sF566TyB6z9qddExs/CKOtlFTiBSaxY="
 #  - ADDONS=audiodecoder
 #  - ADDONS=audioencoder
