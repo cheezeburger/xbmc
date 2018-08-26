@@ -13,7 +13,7 @@ environment:
     # - ADDONS: visualization
     
 before_build:
-  - nuget restore
+  - nuget restore kodi-build\RUN_TESTS.vcxproj
   
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
@@ -115,8 +115,6 @@ build_script:
               Write-Host [ ERROR ] $_ -ForegroundColor Red
             }
           }
-          make coverage
-          make coverage_xml
           exit 1
         }
       }
