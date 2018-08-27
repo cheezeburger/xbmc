@@ -11,14 +11,12 @@ environment:
     # - ADDONS: pvr
     # - ADDONS: screensaver
     # - ADDONS: visualization
-  COVERALLS_REPO_TOKEN:  
-     secure: /RL41xQM0JqpCuLFKSf2Z2M1+XKyhaQ1zpN8Jxn2WmBhyY/Qmz0wyAiJMG+cVMa9
 
 init:
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 install:
-  - choco install opencover.portable
+  - choco install "msbuild-sonarqube-runner" -y
   - SET PATH=C:\Program Files (x86)\CMake\bin;C:\msys64\bin;C:\msys64\usr\bin;%PATH%
   - bash -lc "pacman --needed --noconfirm -Sy"
   - mklink /j %APPVEYOR_BUILD_FOLDER%\project\BuildDependencies\msys64 C:\msys64
@@ -29,7 +27,10 @@ build_script:
 
   # Setup Visual Studio compiler environment
   - call "%VS140COMNTOOLS%..\..\VC\bin\vcvars32.bat"
-
+  
+  - MSBuild.SonarQube.Runner.exe begin /k:"kodi.sln" /d:"sonar.host.url=https://sonarqube.com" /d:"sonar.login=bc3a210f328689d135696bb541e9fdd930cd8397"
+  - msbuild "kodi.sln"
+  - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=bc3a210f328689d135696bb541e9fdd930cd8397"
   #
   # Build Kodi
   #
