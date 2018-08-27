@@ -113,7 +113,7 @@ build_script:
           exit 1
         }
       }
-test: on
+test: off
 
 after_build:
   - ps: |
